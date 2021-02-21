@@ -3,15 +3,15 @@
 import sys
 from random import randint
 
-max_size = 100 # MUST BE BIGGER THEN N
+max_arr_size = 100 # MUST BE BIGGER THEN N
 max_value = 100
 
 def gen_sizes(n):	# generate a list of unique sizes
 	arr_size = []
 	for i in range(0,n):
-		k = randint(2, max_size)
+		k = randint(2, max_arr_size)
 		while k in arr_size:
-			k = randint(2, max_size)
+			k = randint(2, max_arr_size)
 		arr_size.append(k)
 	return arr_size
 
@@ -27,13 +27,16 @@ def main():
 	arr_size = []	
 	k = ''
 	
-	if len(sys.argv) == 2:
+	if len(sys.argv) == 2:	# check if input is digit
 		k = sys.argv[1]
 	while not k.isdigit():
 		print('Please input a number:')
 		k = input()
 	n = int(k)
 	print('n =',n)
+	if (n>max_arr_size):	# check that n<max_arr_size
+		print('Error! N is bigger then max array size')
+		exit()
 	
 	arr_size = gen_sizes(n)
 	print('array sizes:',arr_size)
